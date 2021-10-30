@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  athleteview:
+    container_name: athleteview
+    build:
+      context: ../client/athleteview
+      dockerfile: Dockerfile
+      target: production-stage
+    ports:
+      - 80:80

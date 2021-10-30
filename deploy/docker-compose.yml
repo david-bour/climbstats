@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  search_engine:
+    container_name: search_engine
+    build:
+      context: ../service/search_engine
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - ../service/search_engine:/app
+  athleteview:
+    container_name: athleteview
+    build:
+      context: ../client/athleteview
+      dockerfile: Dockerfile
+      target: build-stage
+    command: ["npm", "run", "serve"]
+    ports:
+      - 8080:8080
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ../client/athleteview:/app
